@@ -1,0 +1,31 @@
+.container-md.my-3,
+.container.text-center {
+  color: rgb(61, 146, 215);
+  font-weight: 500;
+}
+.row.align-items-center {
+  font-size: 1.5rem;
+}
+span.weather {
+  font-size: 1rem;
+}
+.col-6.align-items-center.text-start {
+  font-size: 1rem;
+}
+.col.degree {
+  padding-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+span.degree {
+  font-size: 2.5rem;
+}
+.container {
+  color: rgba(26, 26, 104, 0.566);
+}
+
+#button2 {
+  margin: 0 20px 0 20px;
+  width: 400px;
+  height: 50px;
+}
