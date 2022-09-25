@@ -46,8 +46,8 @@
           <div class="row align-items-center">
             <div class="col sunny">☀️</div>
             <div class="col degree">
-              <span class="degree" id="temperature"> </span>
-              <a href="#" id="celsius">C</a>/<a href="#" id="farenheit">F</a>
+              <span class="degree" id="temperature"> </span> <br />
+              <a href="#" id="celsius">°C</a>|<a href="#" id="farenheit">°F</a>
               <br />
               <span class="weather"> Sunny</span>
             </div>
@@ -141,6 +141,8 @@
 
       function showWeather(response) {
         console.log(response.data.main.temp);
+        celsiusTemp = Math.round(response.data.main.temp);
+        celsiusTemperature = response.data.main.temp;
         let temp = response.data.main.temp;
         let tempRound = Math.round(temp);
 
@@ -166,27 +168,17 @@
         cityNew.innerHTML = `📍${city}`;
       }
 
+      let celsiusTemp = null;
+      let celsiusTemperature = null;
+
       let button = document.querySelector("#button");
       button.addEventListener("click", getCity);
       button.addEventListener("click", weather);
 
-      function swapTempC(event) {
-        event.preventDefault();
-        let temperature = document.querySelector("#temperature");
-        temperature.innerHTML = "17";
-      }
-      function swapTempF(event) {
-        event.preventDefault();
-        let temperature = document.querySelector("#temperature");
-        temperature.innerHTML = "66";
-      }
-
-      let celsius = document.querySelector("#celsius");
-      celsius.addEventListener("click", swapTempC);
-      let farenheit = document.querySelector("#farenheit");
-      farenheit.addEventListener("click", swapTempF);
-
       function showTemp(response) {
+        console.log(Math.round(response.data.main.temp));
+        celsiusTemp = Math.round(response.data.main.temp);
+        celsiusTemperature = response.data.main.temp;
         let temp = response.data.main.temp;
         let tempRound = Math.round(temp);
         let temperature = document.getElementById("temperature");
@@ -209,6 +201,23 @@
         "click",
         navigator.geolocation.getCurrentPosition(currentPosition)
       );
+
+      function swapTempC(event) {
+        event.preventDefault();
+        let temperature = document.querySelector("#temperature");
+        temperature.innerHTML = `${celsiusTemp}`;
+      }
+      function swapTempF(event) {
+        event.preventDefault();
+        let temperature = document.querySelector("#temperature");
+        let farenheit = Math.round((celsiusTemperature * 9) / 5 + 32);
+        temperature.innerHTML = `${farenheit}`;
+      }
+
+      let celsius = document.querySelector("#celsius");
+      celsius.addEventListener("click", swapTempC);
+      let farenheit = document.querySelector("#farenheit");
+      farenheit.addEventListener("click", swapTempF);
     </script>
   </body>
 </html>
