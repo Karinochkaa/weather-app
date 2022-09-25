@@ -37,6 +37,7 @@ span.degree {
 
 #cityName {
   font-size: 2.7rem;
+  color: rgb(9, 9, 92);
 }
 #date {
   font-size: 1.4rem;
@@ -62,4 +63,12 @@ div.container-fluid {
 #celsius,
 #farenheit {
   text-decoration: none;
+}
+#description {
+  color: rgb(9, 9, 92);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+#temperature {
+  color: rgb(9, 9, 92);
 }

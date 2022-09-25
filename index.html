@@ -44,16 +44,22 @@
           </div>
 
           <div class="row align-items-center">
-            <div class="col sunny">☀️</div>
+            <div class="col sunny">
+              <img
+                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                id="icon"
+                alt="weather"
+              />
+            </div>
             <div class="col degree">
               <span class="degree" id="temperature"> </span> <br />
               <a href="#" id="celsius">°C</a>|<a href="#" id="farenheit">°F</a>
               <br />
-              <span class="weather"> Sunny</span>
+              <span class="weather" id="description"> Sunny</span>
             </div>
             <div class="col align-items-center text-center">
-              💨 Wind: 12km/h <br />
-              ☔ Rain chance: 2%
+              💨Wind: <span id="windSpeed"></span> km/h<br />
+              ☔Humidity: <span id="humidity"></span>%
             </div>
           </div>
         </div>
@@ -148,6 +154,20 @@
 
         let temperature = document.getElementById("temperature");
         temperature.innerHTML = `${tempRound}`;
+
+        let icon = document.getElementById("icon");
+        iconId = response.data.weather[0].icon;
+        iconUrl = `https://openweathermap.org/img/wn/${iconId}@2x.png`;
+        icon.setAttribute("src", iconUrl);
+
+        let description = document.getElementById("description");
+        description.innerHTML = response.data.weather[0].description;
+
+        let humidity = document.getElementById("humidity");
+        humidity.innerHTML = response.data.main.humidity;
+
+        let windSpeed = document.getElementById("windSpeed");
+        windSpeed.innerHTML = Math.round(response.data.wind.speed * 3.6);
       }
       function weather(event) {
         event.preventDefault();
@@ -183,6 +203,20 @@
         let tempRound = Math.round(temp);
         let temperature = document.getElementById("temperature");
         temperature.innerHTML = `${tempRound}`;
+
+        let icon = document.getElementById("icon");
+        iconId = response.data.weather[0].icon;
+        iconUrl = `https://openweathermap.org/img/wn/${iconId}@2x.png`;
+        icon.setAttribute("src", iconUrl);
+
+        let description = document.getElementById("description");
+        description.innerHTML = response.data.weather[0].description;
+
+        let humidity = document.getElementById("humidity");
+        humidity.innerHTML = response.data.main.humidity;
+
+        let windSpeed = document.getElementById("windSpeed");
+        windSpeed.innerHTML = Math.round(response.data.wind.speed * 3.6);
       }
       function currentPosition(position) {
         console.log(position.coords.latitude);
