@@ -72,3 +72,24 @@ div.container-fluid {
 #temperature {
   color: rgb(9, 9, 92);
 }
+
+.forecast-date {
+  font-weight: 700;
+  color: rgb(9, 9, 92);
+}
+.max-temp {
+  font-weight: 700;
+  color: rgb(9, 9, 92);
+}
+.min-temp {
+  color: rgb(9, 9, 92);
+  opacity: 0.6;
+}
+.next {
+  color: rgb(61, 146, 215);
+  font-weight: 700;
+  margin-bottom: 0;
+}
+.container.text-center.weather-forecast {
+  margin: 1rem 0 1rem 0;
+}
