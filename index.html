@@ -83,15 +83,16 @@
     </div>
 
     <script>
+      /*
       function showForecast() {
         let forecastElement = document.getElementById("forecast");
         let days = ["Thu", "Fri", "Sat"];
         days.forEach(function (day) {
           forecastHTML =
-          forecastHTML +
-          `<div class="col">
+            forecastHTML +
+            `<div class="col">
           <div class="d-flex flex-column mb-3">
-            <div class="p-2 forecast-date">`${day}`</div>
+            <div class="p-2 forecast-date"> day</div>
             <div class="p-2">
               <img
                 src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
@@ -109,12 +110,11 @@
 
         let forecastHTML = ` <div class="row row-cols-auto justify-content-around">`;
 
-
         forecastHTML = forecastHTML + `</div>`;
         forecastElement.innerHTML = forecastHTML;
       }
 
-      showForecast();
+      showForecast(); */
 
       let date = new Date().getDate();
       let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
