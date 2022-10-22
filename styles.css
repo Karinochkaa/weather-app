@@ -92,4 +92,9 @@ div.container-fluid {
 }
 .container.text-center.weather-forecast {
   margin: 1rem 0 1rem 0;
+  background-color: rgba(61, 146, 215, 0.05);
+  border: 0;
+}
+#wind {
+  margin-top: 10px;
 }

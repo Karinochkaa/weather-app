@@ -57,7 +57,7 @@
               <br />
               <span class="weather" id="description"> Sunny</span>
             </div>
-            <div class="col align-items-center text-center">
+            <div class="col align-items-center text-center" id="wind">
               💨Wind: <span id="windSpeed"></span> km/h<br />
               ☔Humidity: <span id="humidity"></span>%
             </div>
@@ -66,7 +66,7 @@
       </section>
 
       <div class="container next" ">
-      <p class="my-2">Next 5 days</p>
+      <p class="my-2">Next 6 days</p>
     </div>
     <div class="container text-center weather-forecast" id="forecast"></div>
 
@@ -83,10 +83,11 @@
     </div>
 
     <script>
-     
-      function showForecast() {
+      function showForecast(response) {
+        console.log(response.data.daily);
+
         let forecastElement = document.getElementById("forecast");
-        let days = ["Sat", "Sun", "Mon", "Tue", "Wed"];
+        let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
         let forecastHTML = `<div class="row row-cols-auto justify-content-around">`;
 
@@ -115,8 +116,6 @@
         forecastElement.innerHTML = forecastHTML;
       }
 
-      showForecast(); 
-
       let date = new Date().getDate();
       let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       let day = days[new Date().getDay()];
@@ -141,6 +140,17 @@
       let dateOne = document.querySelector("#date");
       dateOne.innerHTML = `${day}, ${month} ${date} </br> ${hour}:${minutes}`;
 
+      function forecastUrl(coordinates) {
+        let lat = coordinates.lat;
+        let lon = coordinates.lon;
+        let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
+
+        let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+        axios.get(apiUrl).then(showForecast);
+        console.log(coordinates);
+      }
+
       function showWeather(response) {
         console.log(response.data.main.temp);
         celsiusTemp = Math.round(response.data.main.temp);
@@ -164,6 +174,8 @@
 
         let windSpeed = document.getElementById("windSpeed");
         windSpeed.innerHTML = Math.round(response.data.wind.speed * 3.6);
+
+        forecastUrl(response.data.coord);
       }
       function weather(event) {
         event.preventDefault();
@@ -192,6 +204,7 @@
       button.addEventListener("click", weather);
 
       function showTemp(response) {
+        console.log(response.data.coord);
         console.log(Math.round(response.data.main.temp));
         celsiusTemp = Math.round(response.data.main.temp);
         celsiusTemperature = response.data.main.temp;
@@ -213,6 +226,8 @@
 
         let windSpeed = document.getElementById("windSpeed");
         windSpeed.innerHTML = Math.round(response.data.wind.speed * 3.6);
+
+        forecastUrl(response.data.coord);
       }
       function currentPosition(position) {
         console.log(position.coords.latitude);
@@ -251,65 +266,3 @@
     </script>
   </body>
 </html>
-
-<!-- 
-         <div class="container">
-          <p class="my-2">Next 5 days</p>
-        </div>
-      <div class="container text-center weather-forecast">
-        <div class="row row-cols-auto justify-content-around">
-          <div class="col">
-            <div class="d-flex flex-column mb-3">
-              <div class="p-2">Tue</div>
-              <div class="p-2"> 
-                <img
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                id="icon"
-                alt="weather"
-              />
-              </div>
-              <div class="p-2"> <span> 15°</span> <span> 15°</span></div>
-            </div>
-          </div>
-
-
-
-          <div class="col">
-            <div class="d-flex flex-column mb-3">
-              <div class="p-2">Wed</div>
-              <div class="p-2">🌦️</div>
-              <div class="p-2">14°</div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="d-flex flex-column mb-3">
-              <div class="p-2">Thu</div>
-              <div class="p-2">🌤️</div>
-              <div class="p-2">13°</div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="d-flex flex-column mb-3">
-              <div class="p-2">Fri</div>
-              <div class="p-2">⛅</div>
-              <div class="p-2">14°</div>
-            </div>
-          </div>
-
-          <div class="col weather-forecast">
-            <div class="d-flex flex-column mb-3">
-              <div class="p-2">Sat</div>
-              <div class="p-2"> 
-                <img
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                id="icon"
-                alt="weather"
-              />
-              </div>
-              <div class="p-2"> <span> 15°</span> <span> 15°</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-  -->
